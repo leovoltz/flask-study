@@ -1,0 +1,14 @@
+# Contextos Flask
+
+1. Configuração 
+ Antes da aplicação ser lançada para ao ar.
+ É onde fica toda configuração da aplicação para o seu funcionamento para depois ir ao ar para ser consumida.
+ ¬ Hooks são funções que são executadas em determinados momentos.
+
+2. Aplicação.
+ Ações que são realizadas após a aplicação já ter sido lançada ao ar.
+ Como por exemplo, um url_for que nos retorna o caminho para algum determinado endpoint.
+3. Request.
+ Ações realizadas durante um período curto do site, onde são realizados as requisições pelo cliente.
+
+ ¬ Blueprint é a maneira de criarmos um pedaço da aplicação flask de maneira separada.
