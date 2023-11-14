@@ -11,5 +11,6 @@ setup(
         "flask-bootstrap",
         "mistune",
         "flask-simplelogin",
+        "flask-admin",
     ],
 )
