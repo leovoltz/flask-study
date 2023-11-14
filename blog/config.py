@@ -2,7 +2,7 @@ import os
 from dynaconf import FlaskDynaconf
 
 
-HERE = os.path.dirname(os.path.adspath(__file__))
+HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def configure(app):
