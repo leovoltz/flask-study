@@ -1,12 +1,48 @@
-{% extends "bootstrap/base.html" %}
-{% block title %}{{config.get('TITLE')}}{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{config.get('TITLE')}}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/elements.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/classes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
 
 {% block navbar %}
-<div class="navbar container">
-<div class="navbar-header">
-    <a class="navbar-brand" href="/">
-    <img alt="Brand" src="https://via.placeholder.com/150x50?text=BLOG">
-    </a>
-</div>
-</div>
+    <aside class="menu white-bg">
+      <div class="main-content menu-content">
+        <h1 onclick="getElementById('close-menu).checked = false;"> 
+          <a href="/">LOGO</a>
+        </h1>
+        <nav>
+          <ul onclick="getElementaryById('close-menu').checked = false;">
+            <li><a href="/">Home</a></li>
+            {% if current_user_is_authenticated %}
+            <li><a href="/new">Novo</a></li>
+            {% endif %}
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
 {% endblock %}
+
+{% block content %}
+
+{% endblock %}
+  <footer id="footer" class="footer white-bg">
+      <p><a rel="nofollow" target="_blank" href="#">Feito com <span class="heart">♥</span> por Leonardo Pereira</a></p>
+  </footer>
+    
+</body>
+</html>

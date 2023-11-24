@@ -1,9 +1,9 @@
-import os
 from dynaconf import FlaskDynaconf
+from pathlib import Path
 
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = Path(__file__).parent
 
 
 def configure(app):
-    FlaskDynaconf(app, extensions_list="EXTENSIONS", root_path=HERE)
+    FlaskDynaconf(app, extensions_list="EXTENSIONS", root_path=ROOT)

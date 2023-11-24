@@ -5,10 +5,11 @@ from flask_admin.contrib.pymongo import ModelView
 from flask_simplelogin import login_required
 from wtforms import form, fields, validators
 from blog.database import mongo
+from slugify import slugify
 
 
 AdminIndexView._handle_view = login_required(AdminIndexView._handle_view)
-ModelView._handle_view = login_required(ModelView._handle_view)
+ModelView._handle_view = login_required(AdminIndexView._handle_view)
 
 
 class PostsForm(form.Form):
@@ -19,21 +20,22 @@ class PostsForm(form.Form):
 
 
 class AdminPosts(ModelView):
-    column_list = ("title", "slug", "published", "date")
+    column_list = ("title", "slug", "content", "published")
     form = PostsForm
 
     def on_model_change(self, form, post, is_created):
-        post["slug"] = (
-            post["title"].replace("_", "-").replace(" ", "-").lower()
-        )
-        # TODO: Croar função no slugify (remover acentos)
-        # TODO: Verificar se o post com o mesmo slug já existe
+        post["slug"] = slugify(post["title"])
         if is_created:
-            post["data"] = datetime.now()
+            post["date"] = datetime.now()
 
 
 def configure(app):
-    admin = Admin(
-        app, name=app.config.get("Title"), template_mode="bootstrap2"
+    """Starts a Flask-Admin instance"""
+    app.admin = Admin(
+        app,
+        name=app.config.get("TITLE"),
+        template_mode=app.config.get(
+            "FLASK_ADMIN_TEMPLATE_MODE", "bootstrap3"
+        ),
     )
-    admin.add_view(AdminPosts(mongo.db.posts, "Posts"))
+    app.admin.add_view(AdminPosts(mongo.db.posts, "Post"))

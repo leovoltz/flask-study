@@ -1,14 +1,14 @@
 [default]
 mongo_uri = "mongodb://localhost:27017/blog"
-title = "Meu Blog"
+title = "Meu blog"
 extensions = [
     "blog.database:configure",
     "blog.commands:configure",
-    "flask_bootstrap:Bootstrap",
+    'flask_bootstrap:Bootstrap',
     "blog.views:configure",
     "blog.plugins:configure",
     "blog.auth:configure",
     "blog.admin:configure",
 ]
-secret_key = "273663cc2d9896932d198d5a104edc5a260b17cf38438bd5826f9b2396797815"
-FLASK_ADMIN_SWATCH = "cerulean"
+
+secret_key= "2367c460f689ea0e5ac1f3ce27d5af068f49767473ef9c6564c2ceef9e69b1c6"

@@ -1,10 +1,11 @@
 import click
 
 from blog.posts import (
-    get_all_posts,
-    get_post_by_slug,
     new_post,
     update_post_by_slug,
+    delete_post_by_slug,
+    get_all_posts,
+    get_post_by_slug,
 )
 
 
@@ -17,25 +18,32 @@ def post():
 @click.option("--title")
 @click.option("--content")
 def new(title, content):
-    """ Add new post to database."""
+    """ Add new post to database"""
     new = new_post(title, content)
-    click.echo(f"New post created {new}")
+    click.echo(f"Post {new} has been created!")
 
 
 @post.command("list")
 def _list():
-    """List all posts"""
+    """ List all posts"""
     for post in get_all_posts():
         click.echo(post)
-        click.echo("~" * 30)  # rich
+        click.echo("~" * 30)
 
 
 @post.command()
 @click.argument("slug")
 def get(slug):
     """Get post by slug"""
-    post = get_post_by_slug(slug)
-    click.echo(post or "post not found")
+    click.echo(get_post_by_slug(slug))
+
+
+@post.command()
+@click.argument("slug")
+def delete(slug):
+    """Delete post by slug"""
+    post = delete_post_by_slug(slug)
+    click.echo(f"Post {post} has been deleted!")
 
 
 @post.command()
@@ -48,12 +56,10 @@ def update(slug, content, published):
     if content is not None:
         data["content"] = content
     if published is not None:
-        data["published"] = published.lower() == "true"
+        data["published"] = published
     update_post_by_slug(slug, data)
-    click.echo("Post updated")
+    click.echo("Post updated!")
 
-
-# TODO: Criar comando para deletar ou despublicar posts.
 
 def configure(app):
     app.cli.add_command(post)

@@ -1,5 +1,5 @@
 from flask import Flask
-from blog.config import configure
+from .config import configure
 
 
 def create_app():

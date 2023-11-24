@@ -1,13 +1,14 @@
 {% extends "base.html.j2" %}
 {% block content %}
-<div class="container">
-<h1>{{ post.title }}</h1>
-
-<div class="jumbotron">
-<small>{{ post.date | format_date }}</small>
-<p>
-    {{ markdown(post.content) }}
-</p>
+<section class="main-bg">
+    <div class="main-content intro-content">
+        <h1 class="intro-text-content title-style">{{ post.title }}</h1>
+        <small>Publicated: {{ post.date | format_date }}</small>
+    <div class="intro-content detail-content-text">
+        <p>
+            {{ markdown(post.content) }} 
+        </p>
+    </div>
 </div>
-</div>
+</section>
 {% endblock %}

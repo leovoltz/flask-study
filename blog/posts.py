@@ -1,35 +1,44 @@
-from __future__ import annotations
-import pymongo
-from datetime import datetime
 from blog.database import mongo
+from datetime import datetime
+from slugify import slugify
 
 
 def get_all_posts(published: bool = True):
     posts = mongo.db.posts.find({"published": published})
-    return posts.sort("date", pymongo.DESCENDING)
+    return posts.sort("-date")
 
 
-def get_post_by_slug(slug: str) -> dict:
+def get_post_by_slug(slug: str):
     post = mongo.db.posts.find_one({"slug": slug})
     return post
 
 
 def update_post_by_slug(slug: str, data: dict) -> dict:
-    # TODO: Se o títúlo mudar, atualizar o slug {falhar se já existir}
+    if "title" in data and data["title"] != get_post_by_slug(slug).get(
+        "title"
+    ):
+        data["slug"] = slugify(data["title"])
     return mongo.db.posts.find_one_and_update({"slug": slug}, {"$set": data})
 
 
-def new_post(title: str, content: str, pushished: bool = True) -> str:
-    # TODO: Refatorar a criação do slug removendo acentos
-    slug = title.replace(" ", "-").replace("_", "-").lower()
-    # TODO: Verificar se post com este slug já existe
-    mongo.db.posts.insert_one(
-        {
-            "title": title,
-            "content": content,
-            "published": pushished,
-            "slug": slug,
-            "date": datetime.now(),
-        }
-    )
+def delete_post_by_slug(slug: str):
+    return mongo.db.posts.find_one_and_delete({"slug": slug})
+
+
+def new_post(title: str, content: str, published: bool = True):
+    slug = slugify(title)
+    existent_slug = mongo.db.posts.find_one({"slug": slug}).get(slug)
+    if slug == existent_slug:
+        print("Title already exist!")
+    else:
+        mongo.db.posts.insert_one(
+            {
+                "title": title,
+                "content": content,
+                "published": published,
+                "slug": slug,
+                "date": datetime.now(),
+            }
+        )
+
     return slug
