@@ -40,8 +40,13 @@ def new():
 def register():
     if request.method == "POST":
         user = request.form.get("user")
-        password = request.form.get("password")
-        create_user(user, password)
+        password1 = request.form.get("password1")
+        password2 = request.form.get("password2")
+
+        if password1 != password2:
+            error = "As senhas não coincidem. Tente novamente."
+            return render_template('register.html.j2', error=error)
+        create_user(username=user, password=password1)
         return redirect(url_for("post.index"))
     return render_template("register.html.j2")
 

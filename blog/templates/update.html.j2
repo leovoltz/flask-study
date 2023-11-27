@@ -1,19 +1,27 @@
 {% extends "base.html.j2" %}
 {% block content %}
-<div class="container">
-    <h1>Update Post</h1>
-
-    <div class="jumbotron">
-        <p>Slug: {{ post.slug }}</p>
+<div class="intro main-bg section">
+    <div class="main-content intro-content">
+        <h1 class="title-style">New Post</h1>
+        <div class="contact-form">
         <form action="{{ url_for('post.update', slug=post.slug) }}" method="post">
-
-            <label for="title">Title:</label><br>
-            <input type="text" name="title" value="{{ post.title }}" /><br>
-            <label for="content">Content:</label><br>
-            <textarea name="content" cols="30" rows="5">{{ post.content }}</textarea><br>
-            <input type="submit" value="Update">
+            <fieldset class="form-grid">
+            <legend>Create a new post</legend>
+            <div class="form-group">
+                <label for="title">Title:</label><br>
+                <input type="text" name="title" value="{{ post.title }}" /><br>
+            </div>
+            <div class="form-group full-width">
+                <label for="content">Content:</label><br>
+                <textarea name="content" cols="30" rows="5">{{ post.content }}</textarea><br>
+            </div>
+            <div class="form-group full-width">
+                <input type="submit" value="Enviar">
+            </div>
+            </fieldset>
         </form>
-
+        </div>
     </div>
 </div>
+
 {% endblock %}

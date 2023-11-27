@@ -4,6 +4,9 @@
     <div class="main-content intro-content">
         <h1 class="intro-text-content title-style">{{ post.title }}</h1>
         <small>Publicated: {{ post.date | format_date }}</small>
+        <div class="icon-side">
+            <a href="{{ url_for('post.update', slug=post.slug) }}"><img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/edit-512.png" alt="edit post icon" class="icon-style"></a>
+        </div>
     <div class="intro-content detail-content-text">
         <p>
             {{ markdown(post.content) }} 

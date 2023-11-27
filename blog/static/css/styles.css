@@ -1,3 +1,230 @@
+/* variaveis */
+:root {
+    --primary-color: #001C56;
+    --white-color: #FFF;
+    --light-gray-color: #EEE;
+    --secondary-color: crimson;
+    --gap: 3rem;
+}
+
+/* elements */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:  'Open Sans', sans-serif;
+    font-size: 2rem;
+    color: var(--primary-color);
+    line-height: 1.5;
+}
+
+h1, h2 ,h3 ,h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif ;
+}
+
+h1 {
+    font-size: 7rem;
+    text-transform: uppercase;
+}
+h2 {
+    font-size: 5.5rem;
+    margin-bottom: 5rem;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+h3 {
+    font-size: 5rem;
+}
+h4 {
+    font-size: 4.5rem;
+}
+h5 {
+    font-size: 4rem;
+}
+h6 {
+    font-size: 3.5rem;
+}
+
+a{
+    text-decoration: none;
+}
+
+p{
+    margin-bottom: 3rem;
+}
+
+.responsive-table{
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+table{
+    min-width: 36rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table caption{
+    font-style: italic;
+    font-size: 1.6rem;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+table td, table th{
+    white-space: nowrap;
+    padding: 1rem;
+    text-align: left;
+    border: 0.1rem solid var(--light-gray-color);
+}
+
+tfoot td, table th{
+    background-color: var(--light-gray-color);
+}
+
+/* classes */
+.main-bg{
+    background-image: url('../img/main-bg.svg');
+    background-size: auto;
+    background-position: center center;
+    color: var(--white-color)
+}
+.white-bg{
+    background: var(--white-color);
+    color: var(--primary-color)
+}
+
+.main-content{
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 8rem var(--gap);
+}
+
+.section {
+    min-height: 100vh;
+}
+
+.menu-spacing{
+    height: 6.5rem;
+}
+
+body .full-width{
+    width: 100%;
+    flex: 1 1 100%;
+}
+
+/* menu */
+.menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+    border-bottom: 0.1rem solid var(--light-gray-color);
+}
+
+.menu-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.menu h1{
+    font-size: 2.3rem;
+    color: var(--primary-color)
+}
+.menu h1 a{
+    color: inherit;
+}
+.menu ul{
+    list-style: none;
+    display: flex
+}
+.menu ul li a{
+    display: block;
+    padding: 2rem;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    position: relative;
+}
+.menu ul li a::after{
+    content: '';
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    width: 0;
+    height: 0.2rem;
+    background: var(--secondary-color);
+    transition: all 300ms ease-in-out;
+}
+.menu ul li a:hover::after{
+    width: 50%;
+    left: 25%;
+}.menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+    border-bottom: 0.1rem solid var(--light-gray-color);
+}
+
+.menu-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.menu h1{
+    font-size: 2.3rem;
+    color: var(--primary-color)
+}
+.menu h1 a{
+    color: inherit;
+}
+.menu ul{
+    list-style: none;
+    display: flex
+}
+.menu ul li a{
+    display: block;
+    padding: 2rem;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    position: relative;
+}
+.menu ul li a::after{
+    content: '';
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    width: 0;
+    height: 0.2rem;
+    background: var(--secondary-color);
+    transition: all 300ms ease-in-out;
+}
+.menu ul li a:hover::after{
+    width: 50%;
+    left: 25%;
+}
+
+/* Restante dos estilos */
+
 .intro-content{
     position: relative;
     gap: var(--gap);
@@ -18,6 +245,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.icon-side{
+    display: flex;
+    flex-flow: row;
+    justify-content:right;
+    align-items: center;
+}
+
+.icon-style{
+    width: 4rem;
+    height: 4rem;
+    filter: brightness(0) invert(1);
 }
 
 .post-url{
@@ -65,7 +305,7 @@
     background: var(--white-color);
     padding: 1.5rem;
     width: 100%;
-    font-size: 3rem;
+    font-size: 2rem;
     outline: none;
 }
 .form-group input:focus, .form-group textarea:focus{
@@ -91,6 +331,13 @@
 
 .form-group ::placeholder{
     color: rgba(3, 3, 3, .5);
+}
+
+.error-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
 }
 
 .footer{
